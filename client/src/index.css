@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light theme colors - kept for reference but we're focusing on dark theme */
+  --background: 0 0% 100%;
+  --foreground: 222 47% 11%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215 16% 47%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --primary: 222 85% 60%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 222 47% 11%;
+  --accent: 210 40% 96.1%;
+  --accent-foreground: 222 47% 11%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 215 20.2% 65.1%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  /* Modern dark theme with gradients and better contrast */
+  --background: 222 47% 4%;
+  --foreground: 210 40% 98%;
+  
+  --muted: 223 47% 12%;
+  --muted-foreground: 215 20.2% 65.1%;
+  
+  --popover: 224 71% 4%;
+  --popover-foreground: 210 40% 98%;
+  
+  --card: 224 71% 6%;
+  --card-foreground: 210 40% 98%;
+  
+  --border: 222 47% 15%;
+  --input: 222 47% 18%;
+  
+  /* Electric blue for primary - standout color */
+  --primary: 222 85% 60%;
+  --primary-foreground: 210 40% 98%;
+  
+  --secondary: 222 47% 15%;
+  --secondary-foreground: 210 40% 98%;
+  
+  --accent: 216 34% 25%;
+  --accent-foreground: 210 40% 98%;
+  
+  --destructive: 0 63% 35%;
+  --destructive-foreground: 210 40% 98%;
+  
+  --ring: 222 47% 25%;
+
+  /* Chart colors for data visualization */
+  --chart-1: 222 85% 60%;
+  --chart-2: 262 83% 65%;
+  --chart-3: 316 70% 60%;
+  --chart-4: 175 84% 45%;
+  --chart-5: 35 90% 60%;
+  
+  /* Sidebar specific colors for more contrast */
+  --sidebar-background: 225 70% 3%;
+  --sidebar-foreground: 210 40% 98%;
+  --sidebar-primary: 222 85% 60%;
+  --sidebar-primary-foreground: 210 40% 98%;
+  --sidebar-accent: 218 34% 20%;
+  --sidebar-accent-foreground: 210 40% 98%;
+  --sidebar-border: 222 47% 15%;
+  --sidebar-ring: 222 47% 25%;
+  
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight;
+  }
+  
+  h1 {
+    @apply text-3xl sm:text-4xl;
+  }
+  
+  h2 {
+    @apply text-2xl sm:text-3xl;
+  }
+  
+  h3 {
+    @apply text-xl sm:text-2xl;
+  }
+}
+
+@layer components {
+  /* Custom background gradients */
+  .bg-gradient-blue {
+    @apply bg-gradient-to-r from-blue-600 to-blue-500;
+  }
+  
+  .bg-gradient-purple {
+    @apply bg-gradient-to-r from-purple-600 to-blue-500;
+  }
+  
+  /* Gradient text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-blue-400;
+  }
+  
+  /* Card with hover effect */
+  .hover-card {
+    @apply transition-all duration-200 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1;
+  }
+  
+  /* Glass effect */
+  .glass {
+    @apply bg-card/80 backdrop-blur-sm border border-border/50;
+  }
+  
+  /* Subtle divider */
+  .divider {
+    @apply h-px w-full bg-gradient-to-r from-transparent via-border to-transparent;
+  }
+  
+  /* Improved sidebar styles */
+  .sidebar {
+    @apply bg-sidebar text-sidebar-foreground border-r border-sidebar-border;
+  }
+  
+  /* Improved dashboard card */
+  .dashboard-card {
+    @apply rounded-xl border border-border bg-card p-6 shadow-sm hover:shadow-md transition-all;
+  }
+  
+  /* Status indicators */
+  .status-badge {
+    @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold;
+  }
+  
+  .status-badge-upcoming {
+    @apply bg-blue-500/20 text-blue-500;
+  }
+  
+  .status-badge-ongoing {
+    @apply bg-green-500/20 text-green-500;
+  }
+  
+  .status-badge-completed {
+    @apply bg-purple-500/20 text-purple-500;
+  }
+  
+  .status-badge-pending {
+    @apply bg-orange-500/20 text-orange-500;
+  }
+  
+  .status-badge-active {
+    @apply bg-green-500/20 text-green-500;
+  }
+  
+  .status-badge-rejected {
+    @apply bg-red-500/20 text-red-500;
+  }
+}
+
