@@ -14,7 +14,11 @@ export default defineConfig({
   out: "./migrations",
   driver: "pg",
   dbCredentials: {
-    connectionString,
+    host: process.env.DATABASE_URL.split('@')[1].split(':')[0],
+    port: parseInt(process.env.DATABASE_URL.split(':')[3].split('/')[0]),
+    user: process.env.DATABASE_URL.split('://')[1].split(':')[0],
+    password: process.env.DATABASE_URL.split(':')[2].split('@')[0],
+    database: process.env.DATABASE_URL.split('/').pop()?.split('?')[0] || '',
     ssl: {
       rejectUnauthorized: true
     }
