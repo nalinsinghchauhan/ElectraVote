@@ -3,7 +3,10 @@ import { drizzle } from 'drizzle-orm/neon-serverless';
 import ws from "ws";
 import * as schema from "@shared/schema";
 
+// Configure WebSocket with timeout settings
 neonConfig.webSocketConstructor = ws;
+neonConfig.webSocketTimeout = 30000; // 30 seconds timeout
+neonConfig.useSecureWebSocket = true;
 
 if (!process.env.DATABASE_URL) {
   throw new Error(
@@ -20,6 +23,10 @@ export const pool = new Pool({
   connectionString,
   ssl: {
     rejectUnauthorized: true
-  }
+  },
+  max: 1, // Limit to one connection to avoid connection pool issues
+  idleTimeoutMillis: 30000, // Close idle connections after 30 seconds
+  connectionTimeoutMillis: 30000, // Connection timeout after 30 seconds
 });
+
 export const db = drizzle({ client: pool, schema });
