@@ -10,11 +10,11 @@ const connectionString = process.env.DATABASE_URL.includes('?')
   : `${process.env.DATABASE_URL}?sslmode=require`;
 
 export default defineConfig({
-  out: "./migrations",
   schema: "./shared/schema.ts",
-  dialect: "postgresql",
+  out: "./migrations",
+  driver: "pg",
   dbCredentials: {
-    url: connectionString,
+    connectionString,
     ssl: {
       rejectUnauthorized: true
     }
